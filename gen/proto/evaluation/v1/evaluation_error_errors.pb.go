@@ -46,3 +46,15 @@ func IsCanNotEvaluateUnattendedCourse(err error) bool {
 func ErrorCanNotEvaluateUnattendedCourse(format string, args ...interface{}) *errors.Error {
 	return errors.New(403, EvaluationErrorReason_CAN_NOT_EVALUATE_UNATTENDED_COURSE.String(), fmt.Sprintf(format, args...))
 }
+
+func IsGormTooManyRequest(err error) bool {
+	if err == nil {
+		return false
+	}
+	e := errors.FromError(err)
+	return e.Reason == EvaluationErrorReason_GORM_TOO_MANY_REQUEST.String() && e.Code == 429
+}
+
+func ErrorGormTooManyRequest(format string, args ...interface{}) *errors.Error {
+	return errors.New(429, EvaluationErrorReason_GORM_TOO_MANY_REQUEST.String(), fmt.Sprintf(format, args...))
+}
