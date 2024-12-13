@@ -40,8 +40,9 @@ message Evaluation {
   uint32 star_rating = 4;
   string content = 5;
   EvaluationStatus status = 6;
-  int64 utime = 7;
-  int64 ctime = 8;
+  bool is_anonymous = 7;
+  int64 utime = 9;
+  int64 ctime = 10;
 }
 
 message SaveRequest {
